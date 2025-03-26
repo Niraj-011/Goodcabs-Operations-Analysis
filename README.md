@@ -16,3 +16,13 @@
     Pandey who is the curious data analyst of Goodcabs. Since these insights will be directly
     reported to the Chief of Operations, Tony also provided some notes to Peter to support his
     work.
+
+## 👨‍💻 Tech used
+--
+
+1. Power BI
+2. Sql
+3. Excel
+
+## Executive 
+![Executive](Dashboard/executive.jpg)
