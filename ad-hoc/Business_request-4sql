@@ -1,0 +1,48 @@
+--Business Request - 4: Identify Cities with Highest and Lowest Total New
+Passengers
+Generate a report that calculates the total new passengers for each city and ranks them
+based on this value. Identify the top 3 cities with the highest number of new passengers as
+well as the bottom 3 cities with the lowest number Of new passengers, categorising them as
+"Top 3" or "Bottom 3" accordingly.
+
+--answer
+
+with city_total as
+(
+	select 
+    c.city_name,
+    sum(new_passengers) as total_new_passengers
+    from fact_passenger_summary ps
+    join dim_city c
+    on ps.city_id = c.city_id
+    group by city_name
+),
+city_rank as
+(
+	select 
+    city_name,
+    total_new_passengers,
+    dense_rank() over(order by total_new_passengers desc) as rank_desc,
+    dense_rank() over(order by total_new_passengers asc) as rank_asc
+    from city_total
+    ),
+    city_categories as 
+    (
+		select 
+        city_name,	
+        total_new_passengers,
+        case
+        when  rank_desc<= 3 then "Top 3"
+        when rank_asc <= 3 then "Bottom 3"
+        else null
+        end as  city_category
+        from city_rank
+	)
+    
+    select
+    city_name,
+    total_new_passengers,
+    city_category
+    from city_categories
+    where city_category is not null
+    order by total_new_passengers desc;
