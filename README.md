@@ -18,7 +18,6 @@
     work.
 
 ## 👨‍💻 Tech used
---
 
 1. Power BI
 2. Sql
@@ -26,3 +25,9 @@
 
 ## Executive 
 ![Executive](Dashboard/executive.jpg)
+
+## City
+![Executive](Dashboard/city.jpg)
+
+## Passenger
+![Executive](Dashboard/passenger.jpg)
